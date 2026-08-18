@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Menu, X, Phone, MessageCircle, Mail, Facebook, Linkedin } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import logo from "@/assets/logo.png.asset.json";
+import logo from "@/assets/logo-hd.png.asset.json";
 import heroElevation from "@/assets/hero-elevation.png.asset.json";
 import project4plex from "@/assets/project-4plex.png.asset.json";
 import projectSheets from "@/assets/project-sheets.png.asset.json";
@@ -29,7 +31,28 @@ export const Route = createFileRoute("/")({
 
 const PHONE = "+15879666026";
 const WHATSAPP = "00201508665565";
+const WHATSAPP_URL = "https://wa.me/201508665565";
 const EMAIL = "builddraft.ca@gmail.com";
+const FACEBOOK = "https://www.facebook.com/share/19MHwULWVc/";
+const LINKEDIN = "https://www.linkedin.com/in/khaled-elmogy-builddraft";
+
+const navLinks = [
+  { href: "#top", label: "Home" },
+  { href: "#services", label: "Services" },
+  { href: "#work", label: "Work" },
+  { href: "#process", label: "Process" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#why", label: "Why Us" },
+  { href: "#contact", label: "Contact" },
+];
+
+const socials = [
+  { href: FACEBOOK, label: "Facebook", Icon: Facebook, external: true },
+  { href: LINKEDIN, label: "LinkedIn", Icon: Linkedin, external: true },
+  { href: WHATSAPP_URL, label: "WhatsApp", Icon: MessageCircle, external: true },
+  { href: `tel:${PHONE}`, label: "Call", Icon: Phone, external: false },
+  { href: `mailto:${EMAIL}`, label: "Email", Icon: Mail, external: false },
+];
 
 const services = [
   "Custom Homes",
@@ -123,28 +146,95 @@ function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
 }
 
 function Landing() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Nav */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
-          <a href="#top" className="flex items-center gap-3">
-            <img src={logo.url} alt="BuildDraft logo" className="h-9 w-9 rounded object-cover" width={36} height={36} />
+          <a href="#top" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+            <img src={logo.url} alt="BuildDraft logo" className="h-10 w-10 object-contain" width={40} height={40} />
             <span className="font-display text-xl uppercase tracking-[0.25em] text-steel-bright">BuildDraft</span>
           </a>
-          <div className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
-            <a className="transition-colors hover:text-foreground" href="#services">Services</a>
-            <a className="transition-colors hover:text-foreground" href="#work">Work</a>
-            <a className="transition-colors hover:text-foreground" href="#process">Process</a>
-            <a className="transition-colors hover:text-foreground" href="#pricing">Pricing</a>
+
+          <div className="hidden items-center gap-7 text-sm text-muted-foreground lg:flex">
+            {navLinks.slice(1, 6).map((l) => (
+              <a key={l.href} className="transition-colors hover:text-foreground" href={l.href}>
+                {l.label}
+              </a>
+            ))}
           </div>
-          <a
-            href="#contact"
-            className="rounded-md border border-border bg-secondary px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-surface-2"
-          >
-            Get a Quote
-          </a>
+
+          <div className="flex items-center gap-2">
+            <div className="hidden items-center gap-1 sm:flex">
+              {socials.map(({ href, label, Icon, external }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  title={label}
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="rounded-md border border-border p-2 text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
+            <a
+              href="#contact"
+              className="hidden rounded-md border border-border bg-secondary px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-surface-2 sm:inline-block"
+            >
+              Get a Quote
+            </a>
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              className="rounded-md border border-border p-2 text-foreground transition-colors hover:bg-surface-2 lg:hidden"
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </nav>
+
+        {/* Mobile menu */}
+        <div
+          className={`overflow-hidden border-t border-border transition-[max-height,opacity] duration-300 lg:hidden ${
+            open ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="mx-auto max-w-6xl px-5 py-4">
+            <ul className="grid gap-1">
+              {navLinks.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="block rounded-md px-3 py-3 font-display text-lg uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 flex flex-wrap gap-2 border-t border-border pt-4">
+              {socials.map(({ href, label, Icon, external }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+                >
+                  <Icon className="h-4 w-4" />
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
       </header>
 
       {/* Hero */}
@@ -152,6 +242,16 @@ function Landing() {
         <div className="blueprint-grid absolute inset-0 opacity-70" aria-hidden="true" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-2 md:py-28">
           <div>
+            <Reveal>
+              <img
+                src={logo.url}
+                alt="BuildDraft logo"
+                width={140}
+                height={140}
+                loading="eager"
+                className="mb-6 h-28 w-28 object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)] sm:h-32 sm:w-32"
+              />
+            </Reveal>
             <Reveal>
               <p className="font-display text-xs uppercase tracking-[0.4em] text-accent">
                 Reliable permit drawings
@@ -372,7 +472,7 @@ function Landing() {
       </section>
 
       {/* Why + Mission */}
-      <section className="mx-auto max-w-6xl px-5 py-20">
+      <section id="why" className="mx-auto max-w-6xl px-5 py-20">
         <Reveal>
           <SectionTitle kicker="Why builders choose us" title="A Drafting Partner, Not a Vendor" />
         </Reveal>
@@ -484,11 +584,25 @@ function Landing() {
       <footer className="border-t border-border bg-background">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 sm:flex-row">
           <div className="flex items-center gap-3">
-            <img src={logo.url} alt="" aria-hidden="true" className="h-8 w-8 rounded object-cover" width={32} height={32} />
+            <img src={logo.url} alt="" aria-hidden="true" className="h-9 w-9 object-contain" width={36} height={36} />
             <div>
               <p className="font-display uppercase tracking-[0.25em] text-steel-bright">BuildDraft</p>
               <p className="text-xs text-muted-foreground">Khaled Elmogy · Founder & Architectural Designer</p>
             </div>
+          </div>
+          <div className="flex items-center gap-2">
+            {socials.map(({ href, label, Icon, external }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                title={label}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="rounded-md border border-border p-2 text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
           </div>
           <p className="text-xs text-muted-foreground">
             Remote drafting support across Canada & the United States
