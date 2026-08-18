@@ -472,7 +472,7 @@ function Landing() {
       </section>
 
       {/* Why + Mission */}
-      <section className="mx-auto max-w-6xl px-5 py-20">
+      <section id="why" className="mx-auto max-w-6xl px-5 py-20">
         <Reveal>
           <SectionTitle kicker="Why builders choose us" title="A Drafting Partner, Not a Vendor" />
         </Reveal>
