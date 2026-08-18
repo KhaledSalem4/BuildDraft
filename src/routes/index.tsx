@@ -31,7 +31,28 @@ export const Route = createFileRoute("/")({
 
 const PHONE = "+15879666026";
 const WHATSAPP = "00201508665565";
+const WHATSAPP_URL = "https://wa.me/201508665565";
 const EMAIL = "builddraft.ca@gmail.com";
+const FACEBOOK = "https://www.facebook.com/share/19MHwULWVc/";
+const LINKEDIN = "https://www.linkedin.com/in/khaled-elmogy-builddraft";
+
+const navLinks = [
+  { href: "#top", label: "Home" },
+  { href: "#services", label: "Services" },
+  { href: "#work", label: "Work" },
+  { href: "#process", label: "Process" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#why", label: "Why Us" },
+  { href: "#contact", label: "Contact" },
+];
+
+const socials = [
+  { href: FACEBOOK, label: "Facebook", Icon: Facebook, external: true },
+  { href: LINKEDIN, label: "LinkedIn", Icon: Linkedin, external: true },
+  { href: WHATSAPP_URL, label: "WhatsApp", Icon: MessageCircle, external: true },
+  { href: `tel:${PHONE}`, label: "Call", Icon: Phone, external: false },
+  { href: `mailto:${EMAIL}`, label: "Email", Icon: Mail, external: false },
+];
 
 const services = [
   "Custom Homes",
