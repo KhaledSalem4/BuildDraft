@@ -243,6 +243,16 @@ function Landing() {
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-2 md:py-28">
           <div>
             <Reveal>
+              <img
+                src={logo.url}
+                alt="BuildDraft logo"
+                width={140}
+                height={140}
+                loading="eager"
+                className="mb-6 h-28 w-28 object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)] sm:h-32 sm:w-32"
+              />
+            </Reveal>
+            <Reveal>
               <p className="font-display text-xs uppercase tracking-[0.4em] text-accent">
                 Reliable permit drawings
               </p>
