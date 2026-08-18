@@ -244,30 +244,6 @@ We are not trying to replace your team.
 
 We help builders, contractors, and design firms increase production capacity, reduce drafting bottlenecks, and keep projects moving forward without the overhead of expanding an internal drafting department.
 
-BuildDraft is your remote drafting partner.
-https://www.facebook.com/share/19MHwULWVc/
-https://www.linkedin.com/in/khaled-elmogy-builddraft?utm_source=share_via&utm_content=profile&utm_medium=member_android
-Phone :
-
-+1 587 966-6026
-What's app :
-
-00201508665565
-انا عايزك تعملي ويب سايت landing page بنفس تصميم البورتوفيليو وعايزك تعملي موديرن ديزاين ويكون فيه انميشن بسيط كدا ويكون سريع و بدون اخطأ
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/d8c0349b-9903-4149-810c-30965d90b47d).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
 
 ```sh
 git clone <this-repository-url>
