@@ -1,6 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { Menu, X, Phone, MessageCircle, Mail, Facebook, Linkedin } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
-import logo from "@/assets/logo.png.asset.json";
+import logo from "@/assets/logo-hd.png.asset.json";
 import heroElevation from "@/assets/hero-elevation.png.asset.json";
 import project4plex from "@/assets/project-4plex.png.asset.json";
 import projectSheets from "@/assets/project-sheets.png.asset.json";
