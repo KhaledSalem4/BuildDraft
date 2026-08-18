@@ -146,28 +146,95 @@ function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
 }
 
 function Landing() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Nav */}
       <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
-          <a href="#top" className="flex items-center gap-3">
-            <img src={logo.url} alt="BuildDraft logo" className="h-9 w-9 rounded object-cover" width={36} height={36} />
+          <a href="#top" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+            <img src={logo.url} alt="BuildDraft logo" className="h-10 w-10 object-contain" width={40} height={40} />
             <span className="font-display text-xl uppercase tracking-[0.25em] text-steel-bright">BuildDraft</span>
           </a>
-          <div className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
-            <a className="transition-colors hover:text-foreground" href="#services">Services</a>
-            <a className="transition-colors hover:text-foreground" href="#work">Work</a>
-            <a className="transition-colors hover:text-foreground" href="#process">Process</a>
-            <a className="transition-colors hover:text-foreground" href="#pricing">Pricing</a>
+
+          <div className="hidden items-center gap-7 text-sm text-muted-foreground lg:flex">
+            {navLinks.slice(1, 6).map((l) => (
+              <a key={l.href} className="transition-colors hover:text-foreground" href={l.href}>
+                {l.label}
+              </a>
+            ))}
           </div>
-          <a
-            href="#contact"
-            className="rounded-md border border-border bg-secondary px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-surface-2"
-          >
-            Get a Quote
-          </a>
+
+          <div className="flex items-center gap-2">
+            <div className="hidden items-center gap-1 sm:flex">
+              {socials.map(({ href, label, Icon, external }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  title={label}
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="rounded-md border border-border p-2 text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
+            </div>
+            <a
+              href="#contact"
+              className="hidden rounded-md border border-border bg-secondary px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-surface-2 sm:inline-block"
+            >
+              Get a Quote
+            </a>
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              className="rounded-md border border-border p-2 text-foreground transition-colors hover:bg-surface-2 lg:hidden"
+            >
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </nav>
+
+        {/* Mobile menu */}
+        <div
+          className={`overflow-hidden border-t border-border transition-[max-height,opacity] duration-300 lg:hidden ${
+            open ? "max-h-[32rem] opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="mx-auto max-w-6xl px-5 py-4">
+            <ul className="grid gap-1">
+              {navLinks.map((l) => (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className="block rounded-md px-3 py-3 font-display text-lg uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-4 flex flex-wrap gap-2 border-t border-border pt-4">
+              {socials.map(({ href, label, Icon, external }) => (
+                <a
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="flex items-center gap-2 rounded-md border border-border px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+                >
+                  <Icon className="h-4 w-4" />
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
       </header>
 
       {/* Hero */}
