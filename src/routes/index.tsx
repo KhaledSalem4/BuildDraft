@@ -584,11 +584,25 @@ function Landing() {
       <footer className="border-t border-border bg-background">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 sm:flex-row">
           <div className="flex items-center gap-3">
-            <img src={logo.url} alt="" aria-hidden="true" className="h-8 w-8 rounded object-cover" width={32} height={32} />
+            <img src={logo.url} alt="" aria-hidden="true" className="h-9 w-9 object-contain" width={36} height={36} />
             <div>
               <p className="font-display uppercase tracking-[0.25em] text-steel-bright">BuildDraft</p>
               <p className="text-xs text-muted-foreground">Khaled Elmogy · Founder & Architectural Designer</p>
             </div>
+          </div>
+          <div className="flex items-center gap-2">
+            {socials.map(({ href, label, Icon, external }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                title={label}
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                className="rounded-md border border-border p-2 text-muted-foreground transition-colors hover:bg-surface-2 hover:text-foreground"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
           </div>
           <p className="text-xs text-muted-foreground">
             Remote drafting support across Canada & the United States
