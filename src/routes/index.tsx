@@ -129,10 +129,30 @@ const reasons = [
 ];
 
 const projects = [
-  { img: project4plex.url, tag: "Multi-Family", title: "High-Efficiency 4-Plex Development", place: "Calgary, Alberta" },
-  { img: projectSheets.url, tag: "Permit Sheets", title: "Technical Plans & Building Sections", place: "NBC 2023 / Part 9" },
-  { img: projectCustom.url, tag: "Custom Residential", title: "Ground-Up Single-Family Residence", place: "Calgary, Alberta" },
-  { img: projectElectrical.url, tag: "Documentation", title: "Main Floor Electrical & Layout Plans", place: "Edmonton, Alberta" },
+  {
+    img: project4plex.url,
+    tag: "Multi-Family",
+    title: "High-Efficiency 4-Plex Development",
+    place: "Calgary, Alberta",
+  },
+  {
+    img: projectSheets.url,
+    tag: "Permit Sheets",
+    title: "Technical Plans & Building Sections",
+    place: "NBC 2023 / Part 9",
+  },
+  {
+    img: projectCustom.url,
+    tag: "Custom Residential",
+    title: "Ground-Up Single-Family Residence",
+    place: "Calgary, Alberta",
+  },
+  {
+    img: projectElectrical.url,
+    tag: "Documentation",
+    title: "Main Floor Electrical & Layout Plans",
+    place: "Edmonton, Alberta",
+  },
 ];
 
 function SectionTitle({ kicker, title }: { kicker: string; title: string }) {
@@ -154,8 +174,16 @@ function Landing() {
       <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
           <a href="#top" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-            <img src={logo.url} alt="BuildDraft logo" className="h-10 w-10 object-contain" width={40} height={40} />
-            <span className="font-display text-xl uppercase tracking-[0.25em] text-steel-bright">BuildDraft</span>
+            <img
+              src={logo.url}
+              alt="BuildDraft logo"
+              className="h-10 w-10 object-contain bg-transparent"
+              width={40}
+              height={40}
+            />
+            <span className="font-display text-xl uppercase tracking-[0.25em] text-steel-bright">
+              BuildDraft
+            </span>
           </a>
 
           <div className="hidden items-center gap-7 text-sm text-muted-foreground lg:flex">
@@ -239,8 +267,14 @@ function Landing() {
 
       {/* Hero */}
       <section id="top" className="relative overflow-hidden deep-panel">
+        <img
+          src="/background.png"
+          alt=""
+          aria-hidden="true"
+          className="hidden lg:block pointer-events-none absolute right-0 top-1/2 transform -translate-y-1/2 max-w-[520px] w-[35%] object-contain"
+        />
         <div className="blueprint-grid absolute inset-0 opacity-70" aria-hidden="true" />
-        <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-2 md:py-28">
+        <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-2 md:py-28">
           <div>
             <Reveal>
               <img
@@ -249,7 +283,7 @@ function Landing() {
                 width={140}
                 height={140}
                 loading="eager"
-                className="mb-6 h-28 w-28 object-contain drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)] sm:h-32 sm:w-32"
+                className="mb-6 h-28 w-28 object-contain bg-transparent sm:h-32 sm:w-32"
               />
             </Reveal>
             <Reveal>
@@ -268,9 +302,10 @@ function Landing() {
             </Reveal>
             <Reveal delay={160}>
               <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground">
-                BuildDraft is a remote drafting and design support studio specializing in residential
-                permit drawings, drafting production and technical drawing packages for builders,
-                contractors, developers and design firms across Canada and the United States.
+                BuildDraft is a remote drafting and design support studio specializing in
+                residential permit drawings, drafting production and technical drawing packages for
+                builders, contractors, developers and design firms across Canada and the United
+                States.
               </p>
             </Reveal>
             <Reveal delay={240}>
@@ -337,7 +372,9 @@ function Landing() {
           </ul>
           <Reveal delay={120}>
             <div className="rounded-xl border border-border bg-surface p-7">
-              <h3 className="font-display text-2xl uppercase text-steel-bright">Packages include</h3>
+              <h3 className="font-display text-2xl uppercase text-steel-bright">
+                Packages include
+              </h3>
               <div className="hairline my-5" />
               <ul className="space-y-3 text-sm text-muted-foreground">
                 {deliverables.map((d) => (
@@ -375,7 +412,9 @@ function Landing() {
                     />
                   </div>
                   <div className="border-t border-border p-5">
-                    <p className="font-display text-xs uppercase tracking-[0.3em] text-accent">{p.tag}</p>
+                    <p className="font-display text-xs uppercase tracking-[0.3em] text-accent">
+                      {p.tag}
+                    </p>
                     <h3 className="mt-2 text-xl text-steel-bright">{p.title}</h3>
                     <p className="mt-1 text-sm text-muted-foreground">{p.place}</p>
                   </div>
@@ -406,70 +445,7 @@ function Landing() {
         </ol>
       </section>
 
-      {/* Pricing */}
-      <section id="pricing" className="border-y border-border bg-surface/40 py-20">
-        <div className="mx-auto max-w-6xl px-5">
-          <Reveal>
-            <SectionTitle kicker="Pricing" title="Transparent Starting Rates" />
-          </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {pricing.map((p, i) => (
-              <Reveal key={p.name} delay={i * 60}>
-                <div className="lift flex h-full flex-col justify-between rounded-xl border border-border bg-background p-6">
-                  <h3 className="text-lg uppercase text-steel-bright">{p.name}</h3>
-                  <div className="mt-6">
-                    <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Starting from</p>
-                    <p className="font-display text-4xl text-steel-gradient">CAD ${p.price}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            <Reveal>
-              <div className="h-full rounded-xl border border-border bg-background p-6">
-                <h3 className="text-lg uppercase text-steel-bright">3D Modeling & Visualization</h3>
-                <p className="mt-2 font-display text-2xl text-steel-gradient">From CAD $500</p>
-                <p className="mt-3 text-sm text-muted-foreground">
-                  Exterior and interior renderings, concept presentations and design visualization.
-                  Pricing varies with model complexity.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={80}>
-              <div className="h-full rounded-xl border border-border bg-background p-6">
-                <h3 className="text-lg uppercase text-steel-bright">AutoCAD Source Files</h3>
-                <p className="mt-2 font-display text-2xl text-steel-gradient">From CAD $500</p>
-                <p className="mt-3 text-sm text-muted-foreground">
-                  Source files may be provided on request depending on project type and agreement.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={160}>
-              <div className="h-full rounded-xl border border-border bg-background p-6">
-                <h3 className="text-lg uppercase text-steel-bright">Commercial Projects</h3>
-                <p className="mt-2 font-display text-2xl text-steel-gradient">Quoted individually</p>
-                <p className="mt-3 text-sm text-muted-foreground">
-                  Scope-based quotes for clinics, daycares, retail, offices and light industrial work.
-                </p>
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delay={120}>
-            <div className="mt-6 rounded-xl border border-border bg-background p-6">
-              <h3 className="text-lg uppercase text-steel-bright">Turnaround Time</h3>
-              <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-                Turnaround varies with current workload, project size, complexity and number of
-                revisions. Most projects move significantly faster than traditional in-house drafting
-                thanks to our dedicated remote workflow. Expedited service may be available for urgent
-                projects.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* Pricing removed per request */}
 
       {/* Why + Mission */}
       <section id="why" className="mx-auto max-w-6xl px-5 py-20">
@@ -492,9 +468,9 @@ function Landing() {
               <h3 className="font-display text-2xl uppercase text-steel-bright">Our Mission</h3>
               <div className="hairline my-5" />
               <p className="text-sm leading-relaxed text-muted-foreground">
-                We are not trying to replace your team. We help builders, contractors and design firms
-                increase production capacity, reduce drafting bottlenecks and keep projects moving
-                forward without the overhead of expanding an internal drafting department.
+                We are not trying to replace your team. We help builders, contractors and design
+                firms increase production capacity, reduce drafting bottlenecks and keep projects
+                moving forward without the overhead of expanding an internal drafting department.
               </p>
               <p className="mt-5 font-display text-xl uppercase text-steel-gradient">
                 BuildDraft is your remote drafting partner.
@@ -532,7 +508,9 @@ function Landing() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <span className="uppercase tracking-widest text-muted-foreground">WhatsApp</span>
+                    <span className="uppercase tracking-widest text-muted-foreground">
+                      WhatsApp
+                    </span>
                     <span className="text-steel-bright">00201508665565</span>
                   </a>
                   <a
@@ -548,7 +526,9 @@ function Landing() {
             <Reveal delay={100}>
               <div className="flex h-full flex-col justify-between rounded-xl border border-border bg-surface p-7">
                 <div>
-                  <h3 className="font-display text-2xl uppercase text-steel-bright">What to expect</h3>
+                  <h3 className="font-display text-2xl uppercase text-steel-bright">
+                    What to expect
+                  </h3>
                   <div className="hairline my-5" />
                   <ul className="space-y-3 text-sm text-muted-foreground">
                     <li>Flexible, project-based collaboration</li>
@@ -584,10 +564,21 @@ function Landing() {
       <footer className="border-t border-border bg-background">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 sm:flex-row">
           <div className="flex items-center gap-3">
-            <img src={logo.url} alt="" aria-hidden="true" className="h-9 w-9 object-contain" width={36} height={36} />
+            <img
+              src={logo.url}
+              alt=""
+              aria-hidden="true"
+              className="h-9 w-9 object-contain"
+              width={36}
+              height={36}
+            />
             <div>
-              <p className="font-display uppercase tracking-[0.25em] text-steel-bright">BuildDraft</p>
-              <p className="text-xs text-muted-foreground">Khaled Elmogy · Founder & Architectural Designer</p>
+              <p className="font-display uppercase tracking-[0.25em] text-steel-bright">
+                BuildDraft
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Khaled Elmogy · Founder & Architectural Designer
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-2">

@@ -61,7 +61,12 @@
   --ring: oklch(0.7 0.05 240);
   --steel: oklch(0.78 0.012 250);
   --steel-bright: oklch(0.93 0.008 250);
-  --gradient-steel: linear-gradient(120deg, oklch(0.98 0.005 250), oklch(0.72 0.015 250) 45%, oklch(0.9 0.008 250));
+  --gradient-steel: linear-gradient(
+    120deg,
+    oklch(0.98 0.005 250),
+    oklch(0.72 0.015 250) 45%,
+    oklch(0.9 0.008 250)
+  );
   --gradient-deep: linear-gradient(160deg, oklch(0.22 0.035 260), oklch(0.15 0.03 262));
   --shadow-panel: 0 24px 60px -30px oklch(0 0 0 / 0.85);
 }

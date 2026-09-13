@@ -244,7 +244,6 @@ We are not trying to replace your team.
 
 We help builders, contractors, and design firms increase production capacity, reduce drafting bottlenecks, and keep projects moving forward without the overhead of expanding an internal drafting department.
 
-
 ```sh
 git clone <this-repository-url>
 cd <repository-name>
