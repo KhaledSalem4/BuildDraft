@@ -33,6 +33,7 @@ const PHONE = "+15879666026";
 const WHATSAPP = "00201508665565";
 const WHATSAPP_URL = "https://wa.me/201508665565";
 const EMAIL = "builddraft.ca@gmail.com";
+const EMAIL_URL = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}`;
 const FACEBOOK = "https://www.facebook.com/share/19MHwULWVc/";
 const LINKEDIN = "https://www.linkedin.com/in/khaled-elmogy-builddraft";
 
@@ -41,7 +42,6 @@ const navLinks = [
   { href: "#services", label: "Services" },
   { href: "#work", label: "Work" },
   { href: "#process", label: "Process" },
-  { href: "#pricing", label: "Pricing" },
   { href: "#why", label: "Why Us" },
   { href: "#contact", label: "Contact" },
 ];
@@ -51,7 +51,31 @@ const socials = [
   { href: LINKEDIN, label: "LinkedIn", Icon: Linkedin, external: true },
   { href: WHATSAPP_URL, label: "WhatsApp", Icon: MessageCircle, external: true },
   { href: `tel:${PHONE}`, label: "Call", Icon: Phone, external: false },
-  { href: `mailto:${EMAIL}`, label: "Email", Icon: Mail, external: false },
+  { href: EMAIL_URL, label: "Email", Icon: Mail, external: true },
+];
+
+const contactMethods = [
+  {
+    href: `tel:${PHONE}`,
+    label: "Phone",
+    Icon: Phone,
+    external: false,
+    value: "+1 587 966-6026",
+  },
+  {
+    href: WHATSAPP_URL,
+    label: "WhatsApp",
+    Icon: MessageCircle,
+    external: true,
+    value: "WhatsApp",
+  },
+  {
+    href: EMAIL_URL,
+    label: "Email",
+    Icon: Mail,
+    external: true,
+    value: EMAIL,
+  },
 ];
 
 const services = [
@@ -107,15 +131,6 @@ const process = [
   },
 ];
 
-const pricing = [
-  { name: "Single Family Home", price: "400" },
-  { name: "Duplex", price: "550" },
-  { name: "Garage Suite", price: "300" },
-  { name: "Backyard Suite / ADU", price: "300" },
-  { name: "Modification Only", price: "100" },
-  { name: "Modification + New Site Plan", price: "200" },
-];
-
 const reasons = [
   "6+ Years of Remote Experience",
   "Canadian Residential Permit Experience",
@@ -130,28 +145,28 @@ const reasons = [
 
 const projects = [
   {
-    img: project4plex.url,
-    tag: "Multi-Family",
-    title: "High-Efficiency 4-Plex Development",
-    place: "Calgary, Alberta",
+    img: "/project-1.png",
+    tag: "Project 1",
+    title: "",
+    place: "Custom residential facade",
   },
   {
-    img: projectSheets.url,
-    tag: "Permit Sheets",
-    title: "Technical Plans & Building Sections",
-    place: "NBC 2023 / Part 9",
+    img: "/project-2.png",
+    tag: "Project 2",
+    title: "",
+    place: "Outdoor living elevation",
   },
   {
-    img: projectCustom.url,
-    tag: "Custom Residential",
-    title: "Ground-Up Single-Family Residence",
-    place: "Calgary, Alberta",
+    img: "/project-3.png",
+    tag: "Project 3",
+    title: "",
+    place: "Modern family home",
   },
   {
-    img: projectElectrical.url,
-    tag: "Documentation",
-    title: "Main Floor Electrical & Layout Plans",
-    place: "Edmonton, Alberta",
+    img: "/project-4.png",
+    tag: "Project 4",
+    title: "",
+    place: "Detailed exterior concept",
   },
 ];
 
@@ -280,10 +295,10 @@ function Landing() {
               <img
                 src={logo.url}
                 alt="BuildDraft logo"
-                width={140}
-                height={140}
+                width={400}
+                height={400}
                 loading="eager"
-                className="mb-6 h-28 w-28 object-contain bg-transparent sm:h-32 sm:w-32"
+                className="mb-6 h-64 w-64 object-contain bg-transparent sm:h-96 sm:w-96"
               />
             </Reveal>
             <Reveal>
@@ -316,20 +331,13 @@ function Landing() {
                 >
                   Start a Project
                 </a>
-                <a
-                  href="#pricing"
-                  className="rounded-md border border-border px-6 py-3 font-display text-base uppercase tracking-widest text-foreground transition-colors hover:bg-surface-2"
-                >
-                  View Pricing
-                </a>
               </div>
             </Reveal>
             <Reveal delay={320}>
-              <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-border pt-6">
+              <dl className="mt-12 grid max-w-lg grid-cols-2 gap-6 border-t border-border pt-6">
                 {[
                   ["6+", "Years remote"],
                   ["ABC / NBC", "Code aligned"],
-                  ["CAD $400", "Homes from"],
                 ].map(([v, l]) => (
                   <div key={l}>
                     <dt className="font-display text-2xl text-steel-bright">{v}</dt>
@@ -342,14 +350,11 @@ function Landing() {
           <Reveal delay={200} className="relative">
             <div className="overflow-hidden rounded-xl border border-border bg-surface p-4 shadow-[var(--shadow-panel)]">
               <img
-                src={heroElevation.url}
-                alt="Residential front elevation permit drawing by BuildDraft"
-                className="w-full rounded-lg object-contain"
+                src="/background.png"
+                alt="Residential project by BuildDraft"
+                className="w-full rounded-lg object-cover"
                 loading="eager"
               />
-              <p className="mt-3 text-center text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                Front Elevation · Permit Set
-              </p>
             </div>
           </Reveal>
         </div>
@@ -397,9 +402,9 @@ function Landing() {
       <section id="work" className="border-y border-border bg-surface/40 py-20">
         <div className="mx-auto max-w-6xl px-5">
           <Reveal>
-            <SectionTitle kicker="Selected work" title="Permit Sets We've Produced" />
+            <SectionTitle kicker="Selected work" title="Selected Samples" />
           </Reveal>
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
             {projects.map((p, i) => (
               <Reveal as="article" key={p.title} delay={i * 90}>
                 <div className="lift group overflow-hidden rounded-xl border border-border bg-background">
@@ -445,12 +450,10 @@ function Landing() {
         </ol>
       </section>
 
-      {/* Pricing removed per request */}
-
       {/* Why + Mission */}
       <section id="why" className="mx-auto max-w-6xl px-5 py-20">
         <Reveal>
-          <SectionTitle kicker="Why builders choose us" title="A Drafting Partner, Not a Vendor" />
+          <SectionTitle kicker="Why builders choose us" title="" />
         </Reveal>
         <div className="grid gap-10 lg:grid-cols-2">
           <ul className="grid gap-3 sm:grid-cols-2">
@@ -494,32 +497,20 @@ function Landing() {
                   Send your project description, sketches, existing drawings and site information —
                   we'll reply with an estimated price range and timeline.
                 </p>
-                <div className="mt-6 space-y-3">
-                  <a
-                    className="lift flex items-center justify-between rounded-md border border-border bg-background px-4 py-3 text-sm"
-                    href={`tel:${PHONE}`}
-                  >
-                    <span className="uppercase tracking-widest text-muted-foreground">Phone</span>
-                    <span className="text-steel-bright">+1 587 966-6026</span>
-                  </a>
-                  <a
-                    className="lift flex items-center justify-between rounded-md border border-border bg-background px-4 py-3 text-sm"
-                    href={`https://wa.me/${WHATSAPP.replace(/^00/, "")}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="uppercase tracking-widest text-muted-foreground">
-                      WhatsApp
-                    </span>
-                    <span className="text-steel-bright">00201508665565</span>
-                  </a>
-                  <a
-                    className="lift flex items-center justify-between rounded-md border border-border bg-background px-4 py-3 text-sm"
-                    href={`mailto:${EMAIL}`}
-                  >
-                    <span className="uppercase tracking-widest text-muted-foreground">Email</span>
-                    <span className="text-steel-bright">{EMAIL}</span>
-                  </a>
+                <div className="mt-6 flex flex-wrap items-center gap-4">
+                  {contactMethods.map(({ href, label, Icon, external, value }) => (
+                    <a
+                      key={label}
+                      href={href}
+                      aria-label={label}
+                      title={value}
+                      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      className="lift flex h-14 w-14 items-center justify-center rounded-full border border-border bg-background text-foreground transition-colors hover:bg-surface-2 hover:text-steel-bright"
+                    >
+                      <Icon className="h-6 w-6" />
+                      <span className="sr-only">{label}</span>
+                    </a>
+                  ))}
                 </div>
               </div>
             </Reveal>

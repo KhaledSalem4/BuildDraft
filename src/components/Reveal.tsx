@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ElementType, type ReactNode, type Ref } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export function Reveal({
   children,
@@ -9,9 +9,9 @@ export function Reveal({
   children: ReactNode;
   delay?: number;
   className?: string;
-  as?: ElementType;
+  as?: "div" | "section" | "li" | "article";
 }) {
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -36,10 +36,10 @@ export function Reveal({
     return () => io.disconnect();
   }, []);
 
-  const Comp = Tag as ElementType;
+  const Comp = Tag as any;
   return (
     <Comp
-      ref={ref as Ref<HTMLElement>}
+      ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
       className={`reveal ${visible ? "is-visible" : ""} ${className}`}
     >
